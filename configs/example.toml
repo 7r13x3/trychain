@@ -1,0 +1,77 @@
+# ═══════════════════════════════════════════════════════════
+#  TryChain v1.0 — Configuration
+# ═══════════════════════════════════════════════════════════
+#  Chain order = order of [[proxies]] blocks below.
+#  Client -> Proxy 1 -> Proxy 2 -> ... -> Target
+# ═══════════════════════════════════════════════════════════
+
+[server]
+listen = "127.0.0.1"
+port = 1080
+
+# ─── Chain Settings ────────────────────────────────────────
+[chain]
+mode = "isolation"        # strict | dynamic | isolation
+timeout = 10              # seconds per hop
+min_hops = 3              # minimum proxies per connection (isolation mode)
+proxy_dns = true          # forward DNS through the chain
+
+# ─── Security Layers ───────────────────────────────────────
+# true = enabled, false = disabled
+# Edit these live from GUI or CLI without restart
+[security]
+circuit_isolation = true  # different route per connection
+kill_switch       = true  # block all traffic if chain breaks
+dns_over_proxy    = true  # no DNS leaks
+block_ipv6        = true  # prevent IPv6 leaks
+padding           = true  # add dummy traffic
+padding_interval  = 5     # seconds between padding packets
+
+# ─── Rotation ──────────────────────────────────────────────
+[rotation]
+enabled  = true
+interval = 60             # rotate proxy order every N seconds
+
+# ─── Proxies ───────────────────────────────────────────────
+# Supported types: socks5 | socks4 | http | https
+# Leave username/password empty for no auth.
+
+[[proxies]]
+name = "tor"
+type = "socks5"
+host = "127.0.0.1"
+port = 9050
+username = ""
+password = ""
+
+[[proxies]]
+name = "residential1"
+type = "socks5"
+host = "1.2.3.4"
+port = 1080
+username = "user"
+password = "pass"
+
+[[proxies]]
+name = "vpn_proxy"
+type = "socks5"
+host = "5.6.7.8"
+port = 1080
+username = ""
+password = ""
+
+[[proxies]]
+name = "http_relay"
+type = "http"
+host = "9.10.11.12"
+port = 8080
+username = ""
+password = ""
+
+[[proxies]]
+name = "mobile"
+type = "socks5"
+host = "13.14.15.16"
+port = 1080
+username = "user2"
+password = "pass2"
