@@ -225,4 +225,3 @@ TryChain is provided for legal privacy, security research, and authorized penetr
 You are solely responsible for ensuring your use of this software complies with all applicable local, national, and international laws. Do not use this tool to violate any law or the rights of others. The authors assume no liability for misuse.
 License
 GPL-3.0
-Commit changes. Then say **"next"** and I'll send `trychain/__init__.py`, `trychain/logger.py`, and `trychain/config.py`.
